@@ -213,6 +213,7 @@
 <script type="text/javascript">
 
 	$('#home').one('pageshow', function () {	//取得服務清單
+		alert(typeof(nfc));
 		nfc.addTagDiscoveredListener(function(){alert("addTagDiscoveredListener_detected");}, function(){alert("addTagDiscoveredListener_success");}, function(){alert("addTagDiscoveredListener_fail");});
 		nfc.addMimeTypeListener('text/pg', function(){alert("addMimeTypeListener_detected");}, function(){alert("addMimeTypeListener_success");}, function(){alert("addMimeTypeListener_fail");});
 		nfc.addNdefListener(function(){alert("addNdefListener_detected");}, function(){alert("addNdefListener_success");}, function(){alert("addNdefListener_fail");});
