@@ -1,4 +1,5 @@
-﻿
+﻿"use strict";
+
 function handleNfcFromIntentFilter() {
 
     // This was historically done in cordova.addConstructor but broke with PhoneGap-2.2.0.
