@@ -36,14 +36,7 @@
 	</div><!-- /header -->
 	
 	<div data-role="content">
-		<!--<h3 class="PageTitle">應用程式專區</h3>-->
-		<img src="images/app-title.png" style="width:100%;" />
-		<div id="apps"></div>
-		<img src="images/app-bottom.png" style="width:100%;" />
-		<!--<h3 class="PageTitle">網站專區</h3>-->
-		<img src="images/web-title.png" style="width:100%;margin-top:5px;" />
-		<div id="webpages"></div>
-		<img src="images/web-bottom.png" style="width:100%;" />
+		<input type="button" value="設定監聽器" onclick="setListener();">
 	</div><!-- /content -->
 </div><!-- 首頁 -->
 
@@ -212,8 +205,9 @@
 <script type="text/javascript" src="js/initPage.js"></script><!--初始化頁面，設定header及footer -->
 
 <script type="text/javascript">
-	document.addEventListener("deviceReady", onDeviceReady, false);
-	function deviceReady() {
+	//document.addEventListener("deviceReady", onDeviceReady, false);
+	function setListener() {
+		alert("setListener");
 		alert(typeof(nfc));
 		nfc.addTagDiscoveredListener(function(){alert("addTagDiscoveredListener_detected");}, function(){alert("addTagDiscoveredListener_success");}, function(){alert("addTagDiscoveredListener_fail");});
 		nfc.addMimeTypeListener('text/pg', function(){alert("addMimeTypeListener_detected");}, function(){alert("addMimeTypeListener_success");}, function(){alert("addMimeTypeListener_fail");});
