@@ -207,11 +207,10 @@
 <script type="text/javascript">
 	//document.addEventListener("deviceReady", onDeviceReady, false);
 	function setListener() {
-		alert("setListener");
 		alert(typeof(nfc));
 		//nfc.addTagDiscoveredListener(function(){alert("addTagDiscoveredListener_detected");}, function(){alert("addTagDiscoveredListener_success");}, function(){alert("addTagDiscoveredListener_fail");});
-		//nfc.addMimeTypeListener('text/pg', function(){alert("addMimeTypeListener_detected");}, function(){alert("addMimeTypeListener_success");}, function(){alert("addMimeTypeListener_fail");});
-		nfc.addNdefListener(function(){alert("addNdefListener_detected");}, function(){alert("addNdefListener_success");}, function(){alert("addNdefListener_fail");});
+		nfc.addMimeTypeListener('text/pg', function(){alert("addMimeTypeListener_detected");}, function(){alert("addMimeTypeListener_success");}, function(){alert("addMimeTypeListener_fail");});
+		//nfc.addNdefListener(function(){alert("addNdefListener_detected");}, function(){alert("addNdefListener_success");}, function(){alert("addNdefListener_fail");});
 		//nfc.addNdefFormatableListener(function(){alert("addNdefFormatableListener_detected");}, function(){alert("addNdefFormatableListener_success");}, function(){alert("addNdefFormatableListener_fail");});
 		alert('done');
 	}
