@@ -1,7 +1,4 @@
-﻿cordova.define("com.chariotsolutions.nfc.plugin.NFC", function(require, exports, module) {/*global cordova, console */
-/*jslint sloppy: false, browser: true */
-"use strict";
-
+﻿
 function handleNfcFromIntentFilter() {
 
     // This was historically done in cordova.addConstructor but broke with PhoneGap-2.2.0.
@@ -589,4 +586,3 @@ window.nfc = nfc;
 window.ndef = ndef;
 window.util = util;
 window.fireNfcTagEvent = fireNfcTagEvent;
-});
