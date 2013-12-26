@@ -212,7 +212,7 @@
 <script type="text/javascript" src="js/initPage.js"></script><!--初始化頁面，設定header及footer -->
 
 <script type="text/javascript">
-	document.addEventListener("deviceReady", deviceReady, false);
+	document.addEventListener("deviceReady", onDeviceReady, false);
 	function deviceReady() {
 		alert(typeof(nfc));
 		nfc.addTagDiscoveredListener(function(){alert("addTagDiscoveredListener_detected");}, function(){alert("addTagDiscoveredListener_success");}, function(){alert("addTagDiscoveredListener_fail");});
