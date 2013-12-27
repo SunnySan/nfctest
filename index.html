@@ -95,9 +95,11 @@ function init() {
 
 	function writeTag(){
 		var s = $('#home #text1').val();
-		alert(s);
-		var record = ndef.uriRecord(s);
-		alert(record.id);
-		alert(record.payload);
+		//var record = ndef.uriRecord(s);
+		var message = [
+			ndef.textRecord("V-Living測試"),
+			ndef.uriRecord(s)
+		];
+		nfc.write(message, function(){alert("寫入成功");}, function(){alert("寫入失敗");});
 	}
 </script>
