@@ -38,6 +38,8 @@
 	
 	<div data-role="content">
 		<input type="button" value="設定監聽器" onclick="setListener();">
+		<input type="text" name="text1" id="text1" value="http://www.google.com/">
+		<input type="button" value="寫入NFC Tag" onclick="writeTag();">
 	</div><!-- /content -->
 </div><!-- 首頁 -->
 
@@ -91,4 +93,9 @@ function init() {
 		alert('done');
 	}
 
+	function writeTag(){
+		var s = $('home text1').val();
+		alert(s);
+		var record = ndef.uriRecord(s);
+	}
 </script>
