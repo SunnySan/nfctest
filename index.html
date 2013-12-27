@@ -69,7 +69,7 @@ function ready() {
     alert('addEventListener_begin');
     document.addEventListener("tag", onNfc, false);
     alert('addEventListener_end');
-		alert(typeof(nfc));
+		alert(typeof(cordova));
     cordova.exec(win, fail, "NfcPlugin", "registerTag", []);
     alert('cordova.exec_end');
 
