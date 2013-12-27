@@ -97,7 +97,6 @@ function init() {
 		var s = $('#home #text1').val();
 		//var record = ndef.uriRecord(s);
 		var message = [
-			ndef.textRecord("V-Living測試"),
 			ndef.uriRecord(s)
 		];
 		nfc.write(message, function(){alert("寫入成功");}, function(){alert("寫入失敗");});
