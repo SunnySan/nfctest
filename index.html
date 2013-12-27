@@ -38,8 +38,22 @@
 	
 	<div data-role="content">
 		<input type="button" value="設定監聽器" onclick="setListener();">
-		<input type="text" name="text1" id="text1" value="http://www.google.com/">
-		<input type="button" value="寫入NFC Tag" onclick="writeTag();">
+		<br>
+		<div>威寶企網首頁</div>
+		<input type="text" name="text1" id="text1" value="http://www.vibo.com.tw/">
+		<input type="button" value="寫入NFC Tag" onclick="writeTag('text1');">
+		<br>
+		<div>面對面的讚，更讚! 拔牙篇_完整版</div>
+		<input type="text" name="text2" id="text2" value="https://www.youtube.com/watch?v=S-diRjy6DKU">
+		<input type="button" value="寫入NFC Tag" onclick="writeTag('text2');">
+		<br>
+		<div>【鋼鐵人３】中文戲院版預告 [Full HD]</div>
+		<input type="text" name="text3" id="text3" value="https://www.youtube.com/watch?v=XNrSGoq_77k">
+		<input type="button" value="寫入NFC Tag" onclick="writeTag('text3');">
+		<br>
+		<div>威寶週年慶抽獎活動</div>
+		<input type="text" name="text4" id="text4" value="http://event.vibo.net.tw/201312/index.html">
+		<input type="button" value="寫入NFC Tag" onclick="writeTag('text4');">
 	</div><!-- /content -->
 </div><!-- 首頁 -->
 
@@ -93,8 +107,8 @@ function init() {
 		alert('done');
 	}
 
-	function writeTag(){
-		var s = $('#home #text1').val();
+	function writeTag(text){
+		var s = $('#home #' + text).val();
 		//var record = ndef.uriRecord(s);
 		var message = [
 			ndef.uriRecord(s)
