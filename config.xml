@@ -49,7 +49,7 @@
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
     <gap:plugin name="com.adobe.plugins.gaplugin" />
     <gap:plugin name="nl.x-services.plugins.calendar" />
-    <feature name="http://api.phonegap.com/1.0/geolocation"/>
+    <feature name="http://api.phonegap.com/1.0/ndc"/>
 	<feature name="Device">
 		<param name="android-package" value="org.apache.cordova.Device" />
 	</feature>
