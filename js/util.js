@@ -108,12 +108,15 @@ String.prototype.contains = function(txt)
 }
 
 /**********取得某個 URL 參數的值，例如 http://target.SchoolID/set?text=abc **********/
-function getParameterByName( name ){
+function getParameterByName( name, url ){
 	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
 	var regexS = "[\\?&]"+name+"=([^&#]*)";
 	var regex = new RegExp( regexS );
-	alert(window.location.href);
-	var results = regex.exec( window.location.href );
+	if (beEmpty(url)){
+		var results = regex.exec( window.location.href );
+	}else{
+		var results = regex.exec( url );
+	}
 	if( results == null )
 		return "";
 	else

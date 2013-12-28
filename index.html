@@ -75,9 +75,13 @@
 	function onDeviceReady() {	//程式啟動時先設定監聽器
 		//nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){alert("設定監聽器成功");}, function(){alert("設定監聽器失敗");});
 		nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){}, function(){alert("設定監聽器失敗");});
-		var s = getParameterByName("c");
-		if (notEmpty(s)) alert("恭喜您獲得折價券一張");
 	}	//function onDeviceReady() {	//程式啟動時先設定監聽器
+
+	function handleOpenURL(url) {
+		var s = getParameterByName("c", url);
+		alert("received url: " + url);
+		if (notEmpty(s)) alert("恭喜您獲得折價券一張");
+	}
 	
 	function writeTag(text){	//準備寫入NFC
 		var s = $('#home #' + text).val();
