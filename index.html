@@ -111,18 +111,26 @@
 <script type="text/javascript">
 
 	var sRecord = "";	//寫入至NFC的內容，若此變數無值則不寫入NFC
+	var sCoupon = "";	//目前是否有折價券，若此變數有值則跳至coupon頁
 
 	document.addEventListener("deviceready", onDeviceReady, false);
 	
 	function onDeviceReady() {	//程式啟動時先設定監聽器
 		//nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){alert("設定監聽器成功");}, function(){alert("設定監聽器失敗");});
 		nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){}, function(){alert("設定監聽器失敗");});
+		if (notEmpty(sCoupon)){
+			sCoupon = "";
+			showPage("coupon");
+			alert("恭喜您獲得折價券一張");
+		}
+
 	}	//function onDeviceReady() {	//程式啟動時先設定監聽器
 
 	function handleOpenURL(url) {
 		var s = getParameterByName("c", url);
-		alert("received url: " + url);
+		//alert("received url: " + url);
 		if (notEmpty(s)){
+			sCoupon = "1";
 			showPage("coupon");
 			alert("恭喜您獲得折價券一張");
 		}
