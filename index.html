@@ -159,9 +159,10 @@
 	}
 
 	function doScan(){
-		alert("cordova.plugins.barcodeScanner="+typeof(cordova.plugins.barcodeScanner));
-		alert("cordova.plugins.BarcodeScanner="+typeof(cordova.plugins.BarcodeScanner));
-		alert("window.plugins.barcodeScanner="+typeof(window.plugins.barcodeScanner));
+		alert(typeof(cordova.plugins.barcodeScanner));
+		alert(typeof(cordova.plugins.BarcodeScanner));
+		alert(typeof(window.plugins.barcodeScanner));
+		alert(typeof(window.plugins.BarcodeScanner));
 		barcodeScanner.scan(
 			function (result) {
 				alert("We got a barcode\n" + "Result: " + result.text + "\n" + "Format: " + result.format + "\n" + "Cancelled: " + result.cancelled);
