@@ -19,6 +19,8 @@
 	<script src="cordova.js"></script><!--給PhoneGap用的-->
 	<script type="text/javascript" src="js/phonegap-nfc.js"></script><!--NFC，請參考https://github.com/chariotsolutions/phonegap-nfc -->
 	<script src="js/plugins/LaunchMyApp.js"></script><!--Launch my app，請參考 https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin/blob/d1432ecfff63678a3155804839dda21607706e72/README.md -->
+	<script src="barcodescanner.js"></script><!--Barcode scanner，請參考 https://github.com/phonegap-build/BarcodeScanner/blob/9270025f71891b2f46a38b7bc3d1223b4955dce2/README.md -->
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 
@@ -58,7 +60,7 @@
 		<input type="text" name="text4" id="text4" value="http://event.vibo.net.tw/201312/index.html">
 		<input type="button" value="寫入NFC Tag" onclick="writeTag('text4');">
 		<hr>
-		<div>Coupon</div>
+		<div>折價券</div>
 		<input type="text" name="text5" id="text5" value="nfctest://index.html?c=1">
 		<input type="button" value="寫入NFC Tag" onclick="writeTag('text5');">
 	</div><!-- /content -->
