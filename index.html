@@ -31,6 +31,7 @@
 		<div data-role="navbar">
 			<ul class="navbar-content-area">
 				<li><a href="#home">V-Living NFC測試</a></li>
+				<li><a href="#coupon">我的折價券</a></li>
 			</ul>
 		</div><!-- /navbar -->
 	</div><!-- /header -->
@@ -62,6 +63,24 @@
 	</div><!-- /content -->
 </div><!-- 首頁 -->
 
+<!-- ****************************** 折價券 ***********************************-->
+<div data-role="page" id="coupon">
+	<div data-role="header" data-position="fixed" class="vibo-header">
+		<div class="header-padding"></div>
+		<div data-role="navbar">
+			<ul class="navbar-content-area">
+				<li><a href="#home">V-Living NFC測試</a></li>
+				<li><a href="#coupon">我的折價券</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /header -->
+	
+	<div data-role="content">
+		<div>我的折價券</div>
+		<img src="images/qrcode.jpg" />
+	</div><!-- /content -->
+</div><!-- 折價券 -->
+
 </body>
 </html>
 <script type="text/javascript" src="js/initPage.js"></script><!--初始化頁面，設定header及footer -->
@@ -80,7 +99,10 @@
 	function handleOpenURL(url) {
 		var s = getParameterByName("c", url);
 		alert("received url: " + url);
-		if (notEmpty(s)) alert("恭喜您獲得折價券一張");
+		if (notEmpty(s)){
+			showPage("coupon");
+			alert("恭喜您獲得折價券一張");
+		}
 	}
 	
 	function writeTag(text){	//準備寫入NFC
