@@ -149,8 +149,9 @@
 
 	function writeToTag(){	//當手機靠近NFC標籤時，將資料寫入NFC
 		if (beEmpty(sRecord)) return;
+		if (sRecord.indexOf('http')<0) sRecord = "nfctest://?c=" + encodeURIComponent(sRecord);
 		var message = [
-			ndef.uriRecord("nfctest://?c=" + encodeURIComponent(sRecord))
+			ndef.uriRecord(sRecord)
 		];
 		nfc.write(message, function(){unBlockUI();alert("寫入成功");sRecord="";}, function(){unBlockUI();alert("寫入失敗");});
 	}	//function writeToTag(){	//當手機靠近NFC標籤時，將資料寫入NFC
