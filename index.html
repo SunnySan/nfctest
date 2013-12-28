@@ -122,6 +122,7 @@
 			sCoupon = "";
 			showPage("#coupon");
 			alert("恭喜您獲得" + sCoupon + "折價券一張");
+			/*
 			cordova.exec(
 				function(success) {
 					alert("encode success: " + success);
@@ -135,6 +136,7 @@
 					{"type": "TEXT_TYPE", "data": 'http://www.google.com/', "options": ''}
 				]
 			);	//cordova.exec(
+			*/
 		}	//if (notEmpty(sCoupon)){	//從外部掃描NFC取得coupon
 
 	}	//function onDeviceReady() {	//程式啟動時先設定監聽器
@@ -172,6 +174,20 @@
 	}
 
 	function doScan(){
+			cordova.exec(
+				function(success) {
+					alert("encode success: " + success);
+				},
+				function(fail) {
+					alert("encoding failed: " + fail);
+				},
+				'BarcodeScanner',
+				'encode',
+				[
+					{"type": "TEXT_TYPE", "data": 'http://www.google.com/', "options": ''}
+				]
+			);	//cordova.exec(
+		return;
 		cordova.exec(function (result) {
 				//alert("We got a barcode\n" + "Result: " + result.text + "\n" + "Format: " + result.format + "\n" + "Cancelled: " + result.cancelled);
 				alert("成功取得折價券條碼!!");
