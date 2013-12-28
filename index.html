@@ -65,9 +65,15 @@
 <script type="text/javascript">
 
 	var sRecord = "";
+
+	document.addEventListener("deviceready", onDeviceReady, false);
+	
+	function onDeviceReady() {
+		nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){alert("addTagDiscoveredListener_success");}, function(){alert("addTagDiscoveredListener_fail");});
+	}
 	
 	$('#home').one('pageshow',function(event){
-		nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){alert("addTagDiscoveredListener_success");}, function(){alert("addTagDiscoveredListener_fail");});
+		//nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){alert("addTagDiscoveredListener_success");}, function(){alert("addTagDiscoveredListener_fail");});
 	});
 
 	function writeToTag(){
