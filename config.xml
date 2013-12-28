@@ -57,6 +57,6 @@
 	<gap:platform name="android" />
 	<gap:plugin name="com.chariotsolutions.nfc.plugin" />
 	<gap:plugin name="nl.x-services.plugins.launchmyapp">
-		<param:name="URL_SCHEME" value="nfctest" />
+		<param name="URL_SCHEME" value="nfctest" />
 	</gap:plugin>
 </widget>
