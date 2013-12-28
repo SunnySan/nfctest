@@ -135,9 +135,9 @@
 	
 	$('#coupon').on('pageshow',function(event){
 		if (beEmpty(sCoupon)){
-			$('#coupon #btnCoupon').val('目前無折價券');
+			$('#coupon #btnCoupon').attr('value', '目前無折價券');
 		}else{
-			$('#coupon #btnCoupon').val('產生【' + sCoupon + '】折價券條碼');
+			$('#coupon #btnCoupon').attr('value', '產生【' + sCoupon + '】折價券條碼');
 		}
 	});
 	
