@@ -61,7 +61,7 @@
 		<input type="button" value="寫入NFC Tag" onclick="writeTag('text4');">
 		<hr>
 		<div>折價券</div>
-		<input type="text" name="text5" id="text5" value="nfctest://index.html?c=1">
+		<input type="text" name="text5" id="text5" value="nfctest://index.html?c=麥當勞">
 		<input type="button" value="寫入NFC Tag" onclick="writeTag('text5');">
 	</div><!-- /content -->
 </div><!-- 首頁 -->
@@ -118,11 +118,24 @@
 	function onDeviceReady() {	//程式啟動時先設定監聽器
 		//nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){alert("設定監聽器成功");}, function(){alert("設定監聽器失敗");});
 		nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){}, function(){alert("設定監聽器失敗");});
-		if (notEmpty(sCoupon)){
+		if (notEmpty(sCoupon)){	//從外部掃描NFC取得coupon
 			sCoupon = "";
 			showPage("#coupon");
-			alert("恭喜您獲得折價券一張");
-		}
+			alert("恭喜您獲得" + sCoupon + "折價券一張");
+			cordova.exec(
+				function(success) {
+					alert("encode success: " + success);
+				},
+				function(fail) {
+					alert("encoding failed: " + fail);
+				},
+				'BarcodeScanner',
+				'encode',
+				[
+					{"type": "TEXT_TYPE", "data": sCoupon, "options": null}
+				]
+			);	//cordova.exec(
+		}	//if (notEmpty(sCoupon)){	//從外部掃描NFC取得coupon
 
 	}	//function onDeviceReady() {	//程式啟動時先設定監聽器
 
@@ -130,7 +143,7 @@
 		var s = getParameterByName("c", url);
 		//alert("received url: " + url);
 		if (notEmpty(s)){
-			sCoupon = "1";
+			sCoupon = s;
 		}
 	}
 	
