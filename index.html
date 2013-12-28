@@ -36,8 +36,10 @@
 	</div><!-- /header -->
 	
 	<div data-role="content">
+		<!--
 		<input type="button" value="設定監聽器" onclick="setListener();">
 		<hr>
+		-->
 		<div>威寶企網首頁</div>
 		<input type="text" name="text1" id="text1" value="http://www.vibo.com.tw/">
 		<input type="button" value="寫入NFC Tag" onclick="writeTag('text1');">
@@ -61,6 +63,22 @@
 <script type="text/javascript" src="js/initPage.js"></script><!--初始化頁面，設定header及footer -->
 
 <script type="text/javascript">
+
+	var sRecord = "";
+	
+	$('#home').one('pageshow',function(event){
+		nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){alert("addTagDiscoveredListener_success");}, function(){alert("addTagDiscoveredListener_fail");});
+	});
+
+	function writeToTag(){
+		if (beEmpty(sRecord)) return;
+		var message = [
+			ndef.uriRecord(s)
+		];
+		nfc.write(message, function(){alert("寫入成功");sRecord="";}, function(){alert("寫入失敗");});
+	}
+
+
 
 function ready() {
 
@@ -108,10 +126,6 @@ function init() {
 
 	function writeTag(text){
 		var s = $('#home #' + text).val();
-		//var record = ndef.uriRecord(s);
-		var message = [
-			ndef.uriRecord(s)
-		];
-		nfc.write(message, function(){alert("寫入成功");}, function(){alert("寫入失敗");});
+		sRecord = s;
 	}
 </script>
