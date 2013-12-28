@@ -7,7 +7,7 @@
  */
 alert("1");
     var ScannerLoader = function (require, exports, module) {
-
+alert("2");
         var exec = require("cordova/exec");
 
         /**
@@ -87,9 +87,9 @@ alert("1");
         module.exports = barcodeScanner;
 
     }
-
+alert("3");
     ScannerLoader(require, exports, module);
-
+alert("4");
     cordova.define("cordova/plugin/BarcodeScanner", ScannerLoader);
 
 alert("100");
