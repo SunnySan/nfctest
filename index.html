@@ -69,7 +69,8 @@
 	document.addEventListener("deviceready", onDeviceReady, false);
 	
 	function onDeviceReady() {	//程式啟動時先設定監聽器
-		nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){//alert("設定監聽器成功");}, function(){alert("設定監聽器失敗");});
+		//nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){alert("設定監聽器成功");}, function(){alert("設定監聽器失敗");});
+		nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){}, function(){alert("設定監聽器失敗");});
 	}	//function onDeviceReady() {	//程式啟動時先設定監聽器
 	
 	function writeTag(text){	//準備寫入NFC
