@@ -135,10 +135,11 @@
 	
 	$('#coupon').on('pageshow',function(event){
 		if (beEmpty(sCoupon)){
-			$('#coupon #btnCoupon span .ui-btn-text').text('目前無折價券');
+			$('#coupon #btnCoupon').val('目前無折價券');
 		}else{
-			$('#coupon #btnCoupon span .ui-btn-text').text('產生【' + sCoupon + '】折價券條碼');
+			$('#coupon #btnCoupon').val('產生【' + sCoupon + '】折價券條碼');
 		}
+		$('#coupon #btnCoupon').button("refresh");
 	});
 	
 	function writeTag(text){	//準備寫入NFC
