@@ -74,11 +74,9 @@
 	
 
 	function writeToTag(){
-		alert("writeToTag1");
 		if (beEmpty(sRecord)) return;
-		alert("writeToTag2");
 		var message = [
-			ndef.uriRecord(s)
+			ndef.uriRecord(sRecord)
 		];
 		nfc.write(message, function(){alert("寫入成功");sRecord="";}, function(){alert("寫入失敗");});
 	}
