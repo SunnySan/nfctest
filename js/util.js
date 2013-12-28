@@ -112,6 +112,7 @@ function getParameterByName( name ){
 	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
 	var regexS = "[\\?&]"+name+"=([^&#]*)";
 	var regex = new RegExp( regexS );
+	alert(window.location.href);
 	var results = regex.exec( window.location.href );
 	if( results == null )
 		return "";
