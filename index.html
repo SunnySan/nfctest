@@ -61,7 +61,7 @@
 		<input type="button" value="寫入NFC Tag" onclick="writeTag('text4');">
 		<hr>
 		<div>折價券</div>
-		<input type="text" name="text5" id="text5" value="nfctest://index.html?c=麥當勞">
+		<input type="text" name="text5" id="text5" value="麥當勞">
 		<input type="button" value="寫入NFC Tag" onclick="writeTag('text5');">
 	</div><!-- /content -->
 </div><!-- 首頁 -->
@@ -129,7 +129,7 @@
 		var s = getParameterByName("c", url);
 		//alert("received url: " + url);
 		if (notEmpty(s)){
-			sCoupon = s;
+			sCoupon = decodeURIComponent(s);
 		}
 	}
 	
@@ -150,7 +150,7 @@
 	function writeToTag(){	//當手機靠近NFC標籤時，將資料寫入NFC
 		if (beEmpty(sRecord)) return;
 		var message = [
-			ndef.uriRecord(sRecord)
+			ndef.uriRecord("nfctest://?c=" + encodeURIComponent(sRecord))
 		];
 		nfc.write(message, function(){unBlockUI();alert("寫入成功");sRecord="";}, function(){unBlockUI();alert("寫入失敗");});
 	}	//function writeToTag(){	//當手機靠近NFC標籤時，將資料寫入NFC
