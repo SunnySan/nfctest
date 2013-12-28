@@ -64,60 +64,29 @@
 
 <script type="text/javascript">
 
-	var sRecord = "";
+	var sRecord = "";	//寫入至NFC的內容，若此變數無值則不寫入NFC
 
 	document.addEventListener("deviceready", onDeviceReady, false);
 	
-	function onDeviceReady() {
-		nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){alert("設定監聽器成功");}, function(){alert("設定監聽器失敗");});
-	}
+	function onDeviceReady() {	//程式啟動時先設定監聽器
+		nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){//alert("設定監聽器成功");}, function(){alert("設定監聽器失敗");});
+	}	//function onDeviceReady() {	//程式啟動時先設定監聽器
 	
+	function writeTag(text){	//準備寫入NFC
+		var s = $('#home #' + text).val();
+		sRecord = s;
+		showBlockUI();
+	}	//function writeTag(text){	//準備寫入NFC
 
-	function writeToTag(){
+	function writeToTag(){	//當手機靠近NFC標籤時，將資料寫入NFC
 		if (beEmpty(sRecord)) return;
 		var message = [
 			ndef.uriRecord(sRecord)
 		];
 		nfc.write(message, function(){unBlockUI();alert("寫入成功");sRecord="";}, function(){unBlockUI();alert("寫入失敗");});
-	}
+	}	//function writeToTag(){	//當手機靠近NFC標籤時，將資料寫入NFC
 
-
-
-function ready() {
-
-    function onNfc(nfcEvent) {
-
-        var tag = nfcEvent.tag;
-        var tagId = nfc.bytesToHexString(tag.id);
-        alert(tagId);
-
-    }
-
-    function win() {
-        console.log("Listening for NFC Tags");
-    }
-
-    function fail(error) {
-        alert("Error adding NFC listener");
-    }
-
-
-    //nfc.addTagDiscoveredListener(onNfc, win, fail);
-    alert('addEventListener_begin');
-    document.addEventListener("tag", onNfc, false);
-    alert('addEventListener_end');
-		alert(typeof(cordova));
-    cordova.exec(win, fail, "NfcPlugin", "registerTag", []);
-    alert('cordova.exec_end');
-
-}
-
-function init() {
-    document.addEventListener('deviceready', ready, false);
-}
-
-	//document.addEventListener("deviceReady", onDeviceReady, false);
-	function setListener() {
+	function setListener() {	//這個函數目前沒在用
 		alert(typeof(nfc));
 		nfc.addTagDiscoveredListener(function(){alert("addTagDiscoveredListener_detected");}, function(){alert("addTagDiscoveredListener_success");}, function(){alert("addTagDiscoveredListener_fail");});
 		//ready();
@@ -127,9 +96,4 @@ function init() {
 		alert('done');
 	}
 
-	function writeTag(text){
-		var s = $('#home #' + text).val();
-		sRecord = s;
-		showBlockUI();
-	}
 </script>
