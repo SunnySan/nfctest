@@ -120,7 +120,7 @@
 		nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){}, function(){alert("設定監聽器失敗");});
 		if (notEmpty(sCoupon)){
 			sCoupon = "";
-			showPage("coupon");
+			showPage("#coupon");
 			alert("恭喜您獲得折價券一張");
 		}
 
@@ -131,8 +131,6 @@
 		//alert("received url: " + url);
 		if (notEmpty(s)){
 			sCoupon = "1";
-			showPage("coupon");
-			alert("恭喜您獲得折價券一張");
 		}
 	}
 	
