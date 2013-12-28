@@ -248,3 +248,26 @@ function getDataFromServer(sProgram, sData, sResponseType, SuccessCallback, bBlo
 	return false;
 }	//function sServerBaseURL(sProgram, sData, sResponseType, SuccessCallback){
 
+/**********取得儲存在client端的變數值(從PC cookie或手機storage取得)**********/
+function getLocalValue(key){
+	var value = "";
+	if (isRunInApp()){	//PhoneGap，使用 local storage
+		value = window.localStorage.getItem(key);
+	}else{
+		value = $.cookie(key);	//Browser，使用 cookie for JQuery
+	}
+	if (beEmpty(value)) value="";
+	return value;
+}
+
+/**********將變數值儲存在client端(PC cookie或手機storage)**********/
+function setLocalValue(key, value){
+	if (beEmpty(key)) return;
+	if (isRunInApp()){	//PhoneGap，使用 local storage
+		window.localStorage.setItem(key, value);
+	}else{
+		$.cookie(key, value, { expires: 30, path: '/' });	//Browser，使用 cookie for JQuery，預設儲存30天
+	}
+	return;
+}
+

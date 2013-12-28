@@ -101,6 +101,7 @@
 	<div data-role="content">
 		<div>商家POS系統</div>
 		<input type="button" value="掃描折價券" onclick="doScan();">
+		<div>此折價券已經被使用<span id="couponCount" name="couponCount"></span>次</div>
 	</div><!-- /content -->
 </div><!-- 商家POS -->
 
@@ -142,6 +143,10 @@
 		$('#coupon #btnCoupon').button("refresh");
 	});
 	
+	$('#shop').on('pageshow',function(event){
+		updateCouponCount();
+	});
+	
 	function writeTag(text){	//準備寫入NFC
 		var s = $('#home #' + text).val();
 		sRecord = s;
@@ -170,7 +175,20 @@
 	function doScan(){
 		cordova.exec(function (result) {
 				//alert("We got a barcode\n" + "Result: " + result.text + "\n" + "Format: " + result.format + "\n" + "Cancelled: " + result.cancelled);
-				alert("成功取得【" + result.text + "】折價券條碼!!");
+				if (beEmpty(result.text)){
+					alert("失敗為成功之母，加油!!");
+				}else{
+					alert("成功取得【" + result.text + "】折價券條碼!!");
+					var s = getLocalValue("couponCount");
+					if (beEmpty(s)){
+						s = "1";
+					}else{
+						s = parseInt(s);
+						s ++;
+					}
+					setLocalValue("couponCount", s.toString());
+					updateCouponCount();
+				}
 			},
 			function (error) {
 				alert("條碼掃描失敗: " + error);
@@ -213,4 +231,10 @@
 			]
 		);	//cordova.exec(
 	}
+	
+	function updateCouponCount(){	//在商家POS頁面更新coupon使用次數
+		var s = getLocalValue("couponCount");
+		if (beEmpty(s)) s = "0";
+		$('#shop #couponCount').text(s);
+	}	//function updateCouponCount(){	//在商家POS頁面更新coupon使用次數
 </script>
