@@ -81,7 +81,7 @@
 	
 	<div data-role="content">
 		<div>我的折價券</div>
-		<img src="images/qrcode.jpg" />
+		<input type="button" id="btnCoupon" name="btnCoupon" value="產生折價券條碼" onclick="doEncode();">
 	</div><!-- /content -->
 </div><!-- 折價券 -->
 
@@ -119,24 +119,8 @@
 		//nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){alert("設定監聽器成功");}, function(){alert("設定監聽器失敗");});
 		nfc.addTagDiscoveredListener(function(){writeToTag();}, function(){}, function(){alert("設定監聽器失敗");});
 		if (notEmpty(sCoupon)){	//從外部掃描NFC取得coupon
-			sCoupon = "";
 			showPage("#coupon");
 			alert("恭喜您獲得" + sCoupon + "折價券一張");
-			/*
-			cordova.exec(
-				function(success) {
-					alert("encode success: " + success);
-				},
-				function(fail) {
-					alert("encoding failed: " + fail);
-				},
-				'BarcodeScanner',
-				'encode',
-				[
-					{"type": "TEXT_TYPE", "data": 'http://www.google.com/', "options": ''}
-				]
-			);	//cordova.exec(
-			*/
 		}	//if (notEmpty(sCoupon)){	//從外部掃描NFC取得coupon
 
 	}	//function onDeviceReady() {	//程式啟動時先設定監聽器
@@ -148,6 +132,14 @@
 			sCoupon = s;
 		}
 	}
+	
+	$('#coupon').on('pageshow',function(event){
+		if (beEmpty(sCoupon)){
+			$('#coupon #btnCoupon').val('目前無折價券');
+		}else{
+			$('#coupon #btnCoupon').val('產生【' + sCoupon + '】折價券條碼');
+		}
+	});
 	
 	function writeTag(text){	//準備寫入NFC
 		var s = $('#home #' + text).val();
@@ -174,23 +166,9 @@
 	}
 
 	function doScan(){
-			cordova.exec(
-				function(success) {
-					alert("encode success: " + success);
-				},
-				function(fail) {
-					alert("encoding failed: " + fail);
-				},
-				'BarcodeScanner',
-				'encode',
-				[
-					{"type": "TEXT_TYPE", "data": 'http://www.google.com/', "options": ''}
-				]
-			);	//cordova.exec(
-		return;
 		cordova.exec(function (result) {
 				//alert("We got a barcode\n" + "Result: " + result.text + "\n" + "Format: " + result.format + "\n" + "Cancelled: " + result.cancelled);
-				alert("成功取得折價券條碼!!");
+				alert("成功取得" + result.text + "折價券條碼!!");
 			},
 			function (error) {
 				alert("條碼掃描失敗: " + error);
@@ -211,5 +189,26 @@
 			}
 		);
 		*/
+	}
+	
+	function doEncode(){	//產生折價券條碼
+		if (beEmpty(sCoupon)){	//從外部掃描NFC取得coupon
+			alert('目前無折價券');
+			return;
+		}
+
+		cordova.exec(
+			function(success) {
+				alert("encode success: " + success);
+			},
+			function(fail) {
+				alert("encoding failed: " + fail);
+			},
+			'BarcodeScanner',
+			'encode',
+			[
+				{"type": "TEXT_TYPE", "data": sCoupon, "options": ''}
+			]
+		);	//cordova.exec(
 	}
 </script>
