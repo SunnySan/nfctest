@@ -168,7 +168,7 @@
 	function doScan(){
 		cordova.exec(function (result) {
 				//alert("We got a barcode\n" + "Result: " + result.text + "\n" + "Format: " + result.format + "\n" + "Cancelled: " + result.cancelled);
-				alert("成功取得" + result.text + "折價券條碼!!");
+				alert("成功取得【" + result.text + "】折價券條碼!!");
 			},
 			function (error) {
 				alert("條碼掃描失敗: " + error);
