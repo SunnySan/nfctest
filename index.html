@@ -19,7 +19,7 @@
 	<script src="cordova.js"></script><!--給PhoneGap用的-->
 	<script type="text/javascript" src="js/phonegap-nfc.js"></script><!--NFC，請參考https://github.com/chariotsolutions/phonegap-nfc -->
 	<script src="js/plugins/LaunchMyApp.js"></script><!--Launch my app，請參考 https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin/blob/d1432ecfff63678a3155804839dda21607706e72/README.md -->
-	<script src="js/barcodescanner.js"></script><!--Barcode scanner，請參考 https://github.com/phonegap-build/BarcodeScanner/blob/9270025f71891b2f46a38b7bc3d1223b4955dce2/README.md -->
+	<!--<script src="js/barcodescanner.js"></script>--><!--Barcode scanner，請參考 https://github.com/phonegap-build/BarcodeScanner/blob/9270025f71891b2f46a38b7bc3d1223b4955dce2/README.md -->
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
@@ -160,10 +160,11 @@
 
 	function doScan(){
 		cordova.exec(function (result) {
-				alert("We got a barcode\n" + "Result: " + result.text + "\n" + "Format: " + result.format + "\n" + "Cancelled: " + result.cancelled);
+				//alert("We got a barcode\n" + "Result: " + result.text + "\n" + "Format: " + result.format + "\n" + "Cancelled: " + result.cancelled);
+				alert("成功取得折價券條碼!!");
 			},
 			function (error) {
-				alert("Scanning failed: " + error);
+				alert("條碼掃描失敗: " + error);
 			},
 			'BarcodeScanner', 'scan', []);
 		//alert("0");
