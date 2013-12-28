@@ -159,11 +159,19 @@
 	}
 
 	function doScan(){
+		cordova.exec(function (result) {
+				alert("We got a barcode\n" + "Result: " + result.text + "\n" + "Format: " + result.format + "\n" + "Cancelled: " + result.cancelled);
+			},
+			function (error) {
+				alert("Scanning failed: " + error);
+			},
+			'BarcodeScanner', 'scan', []);
 		//alert("0");
 		//alert(typeof(ScannerLoader));
 		//alert(typeof(cordova.plugins.BarcodeScanner));
 		//alert(typeof(window.plugins.barcodeScanner));
 		//alert(typeof(window.plugins.BarcodeScanner));
+		/*
 		ScannerLoader.scan(
 			function (result) {
 				alert("We got a barcode\n" + "Result: " + result.text + "\n" + "Format: " + result.format + "\n" + "Cancelled: " + result.cancelled);
@@ -172,5 +180,6 @@
 				alert("Scanning failed: " + error);
 			}
 		);
+		*/
 	}
 </script>
