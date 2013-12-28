@@ -32,6 +32,7 @@
 			<ul class="navbar-content-area">
 				<li><a href="#home">V-Living NFC測試</a></li>
 				<li><a href="#coupon">我的折價券</a></li>
+				<li><a href="#shop">商家POS</a></li>
 			</ul>
 		</div><!-- /navbar -->
 	</div><!-- /header -->
@@ -71,6 +72,7 @@
 			<ul class="navbar-content-area">
 				<li><a href="#home">V-Living NFC測試</a></li>
 				<li><a href="#coupon">我的折價券</a></li>
+				<li><a href="#shop">商家POS</a></li>
 			</ul>
 		</div><!-- /navbar -->
 	</div><!-- /header -->
@@ -80,6 +82,25 @@
 		<img src="images/qrcode.jpg" />
 	</div><!-- /content -->
 </div><!-- 折價券 -->
+
+<!-- ****************************** 商家POS ***********************************-->
+<div data-role="page" id="shop">
+	<div data-role="header" data-position="fixed" class="vibo-header">
+		<div class="header-padding"></div>
+		<div data-role="navbar">
+			<ul class="navbar-content-area">
+				<li><a href="#home">V-Living NFC測試</a></li>
+				<li><a href="#coupon">我的折價券</a></li>
+				<li><a href="#shop">商家POS</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /header -->
+	
+	<div data-role="content">
+		<div>商家POS系統</div>
+		<input type="button" value="掃描折價券" onclick="doScan();">
+	</div><!-- /content -->
+</div><!-- 商家POS -->
 
 </body>
 </html>
@@ -129,4 +150,17 @@
 		alert('done');
 	}
 
+	function doScan(){
+		cordova.plugins.barcodeScanner.scan(
+			function (result) {
+				alert("We got a barcode\n" +
+				"Result: " + result.text + "\n" +
+				"Format: " + result.format + "\n" +
+				"Cancelled: " + result.cancelled);
+			}, 
+			function (error) {
+				alert("Scanning failed: " + error);
+			}
+		);
+	}
 </script>
