@@ -78,7 +78,7 @@
 		var message = [
 			ndef.uriRecord(sRecord)
 		];
-		nfc.write(message, function(){alert("寫入成功");sRecord="";}, function(){alert("寫入失敗");});
+		nfc.write(message, function(){unBlockUI();alert("寫入成功");sRecord="";}, function(){unBlockUI();alert("寫入失敗");});
 	}
 
 
@@ -130,5 +130,6 @@ function init() {
 	function writeTag(text){
 		var s = $('#home #' + text).val();
 		sRecord = s;
+		showBlockUI();
 	}
 </script>

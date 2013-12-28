@@ -144,7 +144,7 @@ function showBlockUI(){
 */
 	
 	$.blockUI({ 
-		message: '<img src="images/loading.gif">資料更新中，請稍候...</img>',
+		message: '<img src="images/loading.gif">請將手機靠近NFC標籤...</img>',
 		css:{
 			border: 'none',
 			padding: '15px',
