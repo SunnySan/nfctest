@@ -100,7 +100,7 @@
 	</div><!-- /header -->
 	
 	<div data-role="content">
-		<div>商家POS系統</div>
+		<h2>商家POS系統</h2>
 		<input type="button" value="掃描折價券" onclick="doScan();">
 		<div>此折價券已經被使用<span id="couponCount" name="couponCount"></span>次</div>
 	</div><!-- /content -->
@@ -139,10 +139,10 @@
 	$('#coupon').on('pageshow',function(event){
 		if (beEmpty(sCoupon)){
 			$('#coupon #btnCoupon').val('目前無折價券');
-			$('#coupon #btnShare').disable();
+			$('#coupon #btnShare').attr("disabled", true);
 		}else{
 			$('#coupon #btnCoupon').val('產生【' + sCoupon + '】折價券條碼');
-			$('#coupon #btnShare').enable();
+			$('#coupon #btnShare').attr("disabled", false);
 		}
 		$('#coupon #btnCoupon').button("refresh");
 	});
