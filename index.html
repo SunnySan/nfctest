@@ -244,30 +244,40 @@
 			alert('目前無折價券');
 			return;
 		}
-		alert("1");
+
 		if (isSharing){	//目前分享中，取消分享
 			isSharing = false;
 			$('#coupon #btnShare').val('透過NFC分享給好友');
 			$('#coupon #btnShare').button("refresh");
+			nfc.unshare();
 			return;
 		}
-		alert("2");
+
+		//開始NFC分享
+		isSharing = true;
+		$('#coupon #btnShare').val('取消分享');
+		$('#coupon #btnShare').button("refresh");
+
 		var s = "nfctest://?c=" + encodeURIComponent(sRecord);
 		var message = [
 			ndef.uriRecord(s)
 		];
-		alert("3");
+
 		nfc.share(
 			message,
 			function(){
-				isSharing = true;
-				$('#coupon #btnShare').val('取消分享');
+				alert("分享成功!");
+				isSharing = false;
+				$('#coupon #btnShare').val('透過NFC分享給好友');
 				$('#coupon #btnShare').button("refresh");
 			},
 			function(){
 				alert("無法分享!");
+				isSharing = false;
+				$('#coupon #btnShare').val('透過NFC分享給好友');
+				$('#coupon #btnShare').button("refresh");
+				nfc.unshare();
 			}
 		);
-		alert("4");
 	}	//function doShare(){	//透過NFC分享折價券給好友
 </script>
