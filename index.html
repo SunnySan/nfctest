@@ -80,7 +80,7 @@
 	</div><!-- /header -->
 	
 	<div data-role="content">
-		<div>我的折價券</div>
+		<h2>我的折價券</h2>
 		<input type="button" id="btnCoupon" name="btnCoupon" value="產生折價券條碼" onclick="doEncode();">
 		<input type="button" id="btnShare" name="btnShare" value="透過NFC分享給好友" onclick="doShare();">
 	</div><!-- /content -->
@@ -139,8 +139,10 @@
 	$('#coupon').on('pageshow',function(event){
 		if (beEmpty(sCoupon)){
 			$('#coupon #btnCoupon').val('目前無折價券');
+			$('#coupon #btnShare').disable();
 		}else{
 			$('#coupon #btnCoupon').val('產生【' + sCoupon + '】折價券條碼');
+			$('#coupon #btnShare').enable();
 		}
 		$('#coupon #btnCoupon').button("refresh");
 	});
