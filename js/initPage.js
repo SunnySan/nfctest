@@ -10,7 +10,7 @@ $(document).find("div[data-role='page']").each(function(){
 	//設定navbar的高亮項目
 	sEval = "hightlightNavbarItem(" + i + ");";
 	$('#' + pageid).on('pageshow', function () {
-		//eval(sEval);	//將頁面上方navbar中的某個項目設為已選取(active)
+		eval(sEval);	//將頁面上方navbar中的某個項目設為已選取(active)
 	});
 	i++;
 });

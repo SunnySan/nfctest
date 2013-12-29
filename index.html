@@ -244,16 +244,19 @@
 			alert('目前無折價券');
 			return;
 		}
+		alert("1");
 		if (isSharing){	//目前分享中，取消分享
 			isSharing = false;
 			$('#coupon #btnShare').val('透過NFC分享給好友');
 			$('#coupon #btnShare').button("refresh");
 			return;
 		}
+		alert("2");
 		var s = "nfctest://?c=" + encodeURIComponent(sRecord);
 		var message = [
 			ndef.uriRecord(s)
 		];
+		alert("3");
 		nfc.share(
 			message,
 			function(){
@@ -265,5 +268,6 @@
 				alert("無法分享!");
 			}
 		);
+		alert("4");
 	}	//function doShare(){	//透過NFC分享折價券給好友
 </script>
