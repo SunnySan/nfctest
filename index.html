@@ -82,6 +82,7 @@
 	<div data-role="content">
 		<div>我的折價券</div>
 		<input type="button" id="btnCoupon" name="btnCoupon" value="產生折價券條碼" onclick="doEncode();">
+		<input type="button" id="btnShare" name="btnShare" value="透過NFC分享給好友" onclick="doShare();">
 	</div><!-- /content -->
 </div><!-- 折價券 -->
 
@@ -111,8 +112,9 @@
 
 <script type="text/javascript">
 
-	var sRecord = "";	//寫入至NFC的內容，若此變數無值則不寫入NFC
-	var sCoupon = "";	//目前是否有折價券，若此變數有值則跳至coupon頁
+	var sRecord		= "";	//寫入至NFC的內容，若此變數無值則不寫入NFC
+	var sCoupon		= "";	//目前是否有折價券，若此變數有值則跳至coupon頁
+	var isSharing	= false;	//目前是否正處於分享狀態
 
 	document.addEventListener("deviceready", onDeviceReady, false);
 	
@@ -181,10 +183,9 @@
 					alert("成功取得【" + result.text + "】折價券條碼!!");
 					var s = getLocalValue("couponCount");
 					if (beEmpty(s)){
-						s = "1";
+						s = 1;
 					}else{
-						s = parseInt(s);
-						s ++;
+						s = parseInt(s) + 1;
 					}
 					setLocalValue("couponCount", s.toString());
 					updateCouponCount();
@@ -237,4 +238,32 @@
 		if (beEmpty(s)) s = "0";
 		$('#shop #couponCount').text(s);
 	}	//function updateCouponCount(){	//在商家POS頁面更新coupon使用次數
+	
+	function doShare(){	//透過NFC分享折價券給好友
+		if (beEmpty(sCoupon)){	//從外部掃描NFC取得coupon
+			alert('目前無折價券');
+			return;
+		}
+		if (isSharing){	//目前分享中，取消分享
+			isSharing = false;
+			$('#coupon #btnShare').val('透過NFC分享給好友');
+			$('#coupon #btnShare').button("refresh");
+			return;
+		}
+		var s = "nfctest://?c=" + encodeURIComponent(sRecord);
+		var message = [
+			ndef.uriRecord(s)
+		];
+		nfc.share(
+			message,
+			function(){
+				isSharing = true;
+				$('#coupon #btnShare').val('取消分享');
+				$('#coupon #btnShare').button("refresh");
+			},
+			function(){
+				alert("無法分享!");
+			}
+		);
+	}	//function doShare(){	//透過NFC分享折價券給好友
 </script>
